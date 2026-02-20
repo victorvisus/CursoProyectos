@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3AFF7A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2EE55D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo oscuro -->
+  <rect width="100" height="100" fill="#0E0E11" rx="15"/>
+  
+  <!-- Círculo exterior -->
+  <circle cx="50" cy="50" r="40" fill="none" stroke="url(#greenGradient)" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Letra C principal -->
+  <path d="M 30 30 Q 20 30 20 50 Q 20 70 30 70 L 50 70" 
+        fill="none" 
+        stroke="url(#greenGradient)" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  
+  <!-- Elementos de código -->
+  <text x="35" y="55" font-family="monospace" font-size="12" fill="#3AFF7A" font-weight="bold">&lt;/&gt;</text>
+  
+  <!-- Puntos de conexión -->
+  <circle cx="30" cy="30" r="3" fill="#3AFF7A"/>
+  <circle cx="30" cy="70" r="3" fill="#3AFF7A"/>
+  <circle cx="50" cy="70" r="3" fill="#3AFF7A"/>
+  
+  <!-- Líneas de conexión -->
+  <line x1="30" y1="30" x2="35" y2="35" stroke="#3AFF7A" stroke-width="1" opacity="0.6"/>
+  <line x1="30" y1="70" x2="35" y2="65" stroke="#3AFF7A" stroke-width="1" opacity="0.6"/>
+  <line x1="50" y1="70" x2="45" y2="65" stroke="#3AFF7A" stroke-width="1" opacity="0.6"/>
+</svg>
