@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Citas - TechCalendar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style_citas.css" />
+    <!-- Google Fonts -->
+  </head>
+  <body class="min-h-screen py-8 px-4 flex items-center justify-center">
+    <main class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Columna Izquierda: Formulario -->
+      <section
+        class="lg:col-span-7 bg-card-bg border border-border-base rounded-2xl shadow-2xl p-8 md:p-12 h-fit"
+      >
+        <header class="mb-10 text-center">
+          <h1 class="text-3xl md:text-4xl font-bold text-text-main mb-2">
+            Agendar Cita
+          </h1>
+          <p class="text-text-sec text-sm md:text-base">
+            Complete el formulario para reservar su espacio técnico.
+          </p>
+        </header>
+
+        <form id="appointmentForm" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Nombre y Apellidos -->
+            <div class="flex flex-col space-y-2">
+              <label
+                for="fullName"
+                class="text-sm font-semibold text-text-sec uppercase tracking-wider"
+                >Nombre y Apellidos</label
+              >
+              <input
+                type="text"
+                id="fullName"
+                required
+                placeholder="Ej. Juan Pérez"
+                class="bg-bg-main border border-border-base text-text-main px-4 py-3 rounded-lg focus:outline-none focus:border-accent transition-colors"
+              />
+              <p id="fullNameError" class="error-text hidden"></p>
+            </div>
+            <!-- Teléfono -->
+            <div class="flex flex-col space-y-2">
+              <label
+                for="phone"
+                class="text-sm font-semibold text-text-sec uppercase tracking-wider"
+                >Teléfono</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                required
+                placeholder="+34 600 000 000"
+                class="bg-bg-main border border-border-base text-text-main px-4 py-3 rounded-lg focus:outline-none focus:border-accent transition-colors"
+              />
+              <p id="phoneError" class="error-text hidden"></p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Email -->
+            <div class="flex flex-col space-y-2">
+              <label
+                for="email"
+                class="text-sm font-semibold text-text-sec uppercase tracking-wider"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="juan@ejemplo.com"
+                class="bg-bg-main border border-border-base text-text-main px-4 py-3 rounded-lg focus:outline-none focus:border-accent transition-colors"
+              />
+              <p id="emailError" class="error-text hidden"></p>
+            </div>
+            <!-- Fecha -->
+            <div class="flex flex-col space-y-2">
+              <label
+                for="date"
+                class="text-sm font-semibold text-text-sec uppercase tracking-wider"
+                >Fecha</label
+              >
+              <input
+                type="date"
+                id="date"
+                required
+                class="bg-bg-main border border-border-base text-text-main px-4 py-3 rounded-lg focus:outline-none focus:border-accent transition-colors"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Hora -->
+            <div class="flex flex-col space-y-2">
+              <label
+                for="time"
+                class="text-sm font-semibold text-text-sec uppercase tracking-wider"
+                >Hora</label
+              >
+              <select
+                id="time"
+                required
+                class="bg-bg-main border border-border-base text-text-main px-4 py-3 rounded-lg focus:outline-none focus:border-accent transition-colors appearance-none"
+              >
+                <option value="" disabled selected>Seleccionar hora</option>
+                <option value="09:00">09:00 - 10:00</option>
+                <option value="10:00">10:00 - 11:00</option>
+                <option value="11:00">11:00 - 12:00</option>
+                <option value="12:00">12:00 - 13:00</option>
+                <option value="13:00">13:00 - 14:00</option>
+                <option value="15:00">15:00 - 16:00</option>
+                <option value="16:00">16:00 - 17:00</option>
+                <option value="17:00">17:00 - 18:00</option>
+                <option value="18:00">18:00 - 19:00</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Comentarios -->
+          <div class="flex flex-col space-y-2">
+            <label
+              for="comments"
+              class="text-sm font-semibold text-text-sec uppercase tracking-wider"
+              >Comentarios</label
+            >
+            <textarea
+              id="comments"
+              rows="3"
+              placeholder="Detalles adicionales..."
+              class="bg-bg-main border border-border-base text-text-main px-4 py-3 rounded-lg focus:outline-none focus:border-accent transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Botón -->
+          <button
+            type="submit"
+            class="w-full bg-accent text-bg-main font-bold py-4 rounded-xl hover:opacity-90 active:scale-[0.98] transition-all uppercase tracking-widest text-lg shadow-[0_0_20px_rgba(58,255,122,0.3)]"
+          >
+            Agendar Cita
+          </button>
+        </form>
+      </section>
+
+      <!-- Columna Derecha: Calendario Visual -->
+      <aside class="lg:col-span-5 flex flex-col space-y-6">
+        <div
+          class="bg-card-bg border border-border-base rounded-2xl shadow-xl p-6 h-fit relative"
+        >
+          <div class="flex items-center justify-between mb-6">
+            <h2 id="calendarMonth" class="text-xl font-bold text-text-main">
+              Febrero 2026
+            </h2>
+            <div class="flex space-x-1">
+              <button
+                id="prevMonth"
+                class="p-2 hover:bg-border-base border border-transparent rounded-lg transition-colors text-text-main"
+                title="Mes anterior"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <button
+                id="nextMonth"
+                class="p-2 hover:bg-border-base border border-transparent rounded-lg transition-colors text-text-main"
+                title="Siguiente mes"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="grid grid-cols-7 gap-1 text-center text-xs font-bold text-text-sec uppercase mb-4"
+          >
+            <div>Lu</div>
+            <div>Ma</div>
+            <div>Mi</div>
+            <div>Ju</div>
+            <div>Vi</div>
+            <div>Sá</div>
+            <div>Do</div>
+          </div>
+
+          <div id="calendarGrid" class="grid grid-cols-7 gap-1">
+            <!-- Calendar days will be injected here -->
+          </div>
+
+          <!-- Tooltip de disponibilidad -->
+          <div
+            id="availabilityTooltip"
+            class="absolute hidden z-50 bg-bg-main border border-border-base shadow-2xl rounded-xl p-4 w-48 pointer-events-none"
+          >
+            <h4
+              class="text-xs font-bold text-accent uppercase tracking-widest mb-2"
+            >
+              Disponibilidad
+            </h4>
+            <ul id="availableHoursList" class="text-xs space-y-1 text-text-sec">
+              <!-- Hours will be dynamic -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Info Card -->
+        <div
+          class="bg-bg-main/50 border border-border-base/50 rounded-xl p-4 text-xs text-text-sec"
+        >
+          <p class="flex items-center">
+            <span class="w-2 h-2 rounded-full bg-accent mr-2"></span>
+            Pasa el ratón sobre un día para ver los huecos libres.
+          </p>
+          <p class="flex items-center mt-2">
+            <span class="w-2 h-2 rounded-full bg-border-base mr-2"></span>
+            Los días pasados están bloqueados.
+          </p>
+          <p class="flex items-center mt-2">
+            <span class="w-2 h-2 rounded-full bg-[#ff4d4d] mr-2"></span>
+            Los días festivos no son laborales.
+          </p>
+        </div>
+      </aside>
+    </main>
+
+    <!-- MODAL -->
+    <div
+      id="modalOverlay"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50"
+    >
+      <div
+        id="modalContent"
+        class="bg-card-bg border border-border-base w-full max-w-md rounded-2xl overflow-hidden shadow-2xl transform transition-all scale-95 opacity-0"
+      >
+        <!-- Modal Header -->
+        <div id="modalHeader" class="p-6 border-b border-border-base">
+          <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+        </div>
+        <!-- Modal Body -->
+        <div id="modalBody" class="p-6 space-y-4 text-text-sec">
+          <!-- Dynamic Content -->
+        </div>
+        <!-- Modal Footer -->
+        <div class="p-6 bg-bg-main/50 flex justify-end">
+          <button
+            onclick="closeModal()"
+            class="px-6 py-2 bg-border-base text-text-main rounded-lg hover:bg-opacity-80 transition-colors uppercase font-semibold text-sm"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/app_citas.js" type="module"></script>
+  </body>
+</html>
