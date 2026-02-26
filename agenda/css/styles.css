@@ -1,0 +1,22 @@
+/* Estilos personalizados para la aplicación Agenda */
+
+/* Animaciones personalizadas */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.event-item {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+/* Estilos adicionales */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}

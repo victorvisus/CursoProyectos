@@ -1,0 +1,22 @@
+{
+  "name": "agenda",
+  "version": "1.0.0",
+  "description": "Aplicación de agenda con Tailwind CSS",
+  "main": "index.html",
+  "scripts": {
+    "dev": "tailwindcss -i ./css/input.css -o ./css/styles.css --watch",
+    "build": "tailwindcss -i ./css/input.css -o ./css/styles.css"
+  },
+  "keywords": [
+    "agenda",
+    "tailwind",
+    "css"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.24",
+    "autoprefixer": "^10.4.14"
+  }
+}
